@@ -1,21 +1,21 @@
 # README
 
-# テーブル設計
+## テーブル設計
 
-# usersテーブル
+## usersテーブル
 | column             | type   | option      |
 | ------------------ | ------ | ----------- |
 | nickname           | string | null: false |
 | email              | string | null: false |
 | encrypted_password | string | null: false |
 
-## Association
+### Association
 - has_one :profile
 - has_many :items
 - has_many :orders
 
 
-# profilesテーブル
+## profilesテーブル
 | column             | type       | option                         |
 | ------------------ | ---------- | ------------------------------ |
 | first_name_fw      | string     | null: false                    |
@@ -27,11 +27,11 @@
 | birthday_d         | integer    | null: false                    |
 | user               | references | null: false, foreign_key: true |
 
-## Association
+### Association
 - belongs_to :user
 
 
-# itemsテーブル
+## itemsテーブル
 | column             | type       | option                         |
 | ------------------ | ---------- | ------------------------------ |
 | name               | string     | null: false                    |
@@ -44,12 +44,12 @@
 | price              | integer    | null: false                    |
 | user               | references | null: false, foreign_key: true | 
 
-## Association
+### Association
 - belongs_to :user
 - has_one :order
 
 
-# ordersテーブル
+## ordersテーブル
 | column         | type       | option                         |
 | -------------- | ---------- | ------------------------------ |
 | post_code      | string     | null: false                    |
@@ -61,6 +61,6 @@
 | item           | references | null: false, foreign_key: true |
 | user           | references | null: false, foreign_key: true |
 
-## Association
+### Association
 - belongs_to :item
 - belongs_to :user
