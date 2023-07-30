@@ -47,6 +47,7 @@
 ### Association
 - belongs_to :user
 - has_one :order
+- ActiveStorageでimage添付
 
 
 ## ordersテーブル
