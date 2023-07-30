@@ -40,7 +40,7 @@
 | item_status        | string     | null: false                    |
 | fee_status         | string     | null: false                    |
 | prefecture         | string     | null: false                    |
-| delivery_schedeule | string     | null: false                    |
+| delivery_schedule  | string     | null: false                    |
 | price              | integer    | null: false                    |
 | user               | references | null: false, foreign_key: true | 
 
@@ -51,6 +51,18 @@
 
 
 ## ordersテーブル
+| column | type       | option                         |
+| ------ | ---------- | ------------------------------ |
+| item   | references | null: false, foreign_key: true |
+| user   | references | null: false, foreign_key: true |
+
+### Association
+- belongs_to :item
+- belongs_to :user
+- has_one :delivery
+
+
+## deliveriesテーブル
 | column         | type       | option                         |
 | -------------- | ---------- | ------------------------------ |
 | post_code      | string     | null: false                    |
@@ -59,9 +71,8 @@
 | house_number   | string     | null: false                    |
 | building       | string     |                                |
 | phone_number   | string     | null: false                    |
-| item           | references | null: false, foreign_key: true |
-| user           | references | null: false, foreign_key: true |
+| order          | references | null: false, foreign_key: true |
+
 
 ### Association
-- belongs_to :item
-- belongs_to :user
+- belongs_to :order
