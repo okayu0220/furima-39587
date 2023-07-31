@@ -46,7 +46,7 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
       end
       it 'passwordが129文字以上では保存できない' do
-        @user.password = Faker::Internet.password(min_length: 129, max_length: 150)
+        @user.password = Faker::Alphanumeric.alpha(number: 69) + Faker::Number.number(digits: 60).to_s
         @user.password_confirmation = @user.password
         @user.valid?
         expect(@user.errors.full_messages).to include("Password is too long (maximum is 128 characters)")
@@ -59,6 +59,12 @@ RSpec.describe User, type: :model do
       end
       it 'passwordが数字のみでは保存できない' do
         @user.password = "123456"
+        @user.password_confirmation = @user.password
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password is invalid")
+      end
+      it 'passwordに全角文字が含まれると保存できない' do
+        @user.password += "Ａ"
         @user.password_confirmation = @user.password
         @user.valid?
         expect(@user.errors.full_messages).to include("Password is invalid")
