@@ -3,7 +3,7 @@ FactoryBot.define do
     gimei = Gimei.name # 日本語の名前を生成
     nickname              {Faker::Name.initials(number: 2)}
     email                 {Faker::Internet.email}
-    password              {Faker::Internet.password(min_length: 6)}
+    password              {Faker::Alphanumeric.alpha(number: 5) + Faker::Number.number(digits: 5).to_s}
     password_confirmation {password}
     first_name_fw         {gimei.first.kanji}
     last_name_fw          {gimei.last.kanji}
