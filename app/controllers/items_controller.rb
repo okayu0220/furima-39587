@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  before_action :redirect_to_sign_in, except: [:index]
 
   def index
   end
@@ -29,5 +30,11 @@ class ItemsController < ApplicationController
       :delivery_schedule_id,
       :price
     ).merge(user_id: current_user.id)
+  end
+
+  def redirect_to_sign_in
+    unless user_signed_in?
+      redirect_to new_user_session_path
+    end
   end
 end
