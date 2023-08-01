@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :items
+
   validates :password,      format: {with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i} # 英数字混合
   validates :nickname,      presence: true
   validates :first_name_fw, presence: true, format: {with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/} # 全角の漢字・ひらがな・カタカナのみ許可
