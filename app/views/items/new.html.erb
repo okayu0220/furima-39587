@@ -5,7 +5,7 @@
   </header>
   <div class="items-sell-main">
     <h2 class="items-sell-title">商品の情報を入力</h2>
-    <%= form_with model: @item, url: items_path, local: true do |f| %>
+    <%= form_with model: @item, url: items_path, data: { turbo: false }, local: true do |f| %>
 
     <%= render 'shared/error_messages', model: f.object %>
 
@@ -102,13 +102,13 @@
         <div class="price-content">
           <span>販売手数料 (10%)</span>
           <span>
-            <span id='add-tax-price'></span>円
+            <span id='add-tax-price'>0</span>円  <%# JSで表示 %>
           </span>
         </div>
         <div class="price-content">
           <span>販売利益</span>
           <span>
-            <span id='profit'></span>円
+            <span id='profit'>0</span>円  <%# JSで表示 %>
           </span>
         </div>
       </div>
