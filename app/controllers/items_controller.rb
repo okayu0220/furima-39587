@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :redirect_to_sign_in, except: [:index]
 
   def index
+    @items = Item.order("created_at DESC")
   end
 
   def new
