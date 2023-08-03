@@ -91,7 +91,7 @@ RSpec.describe Item, type: :model do
       it 'priceに数字以外が含まれると保存できない' do
         @item.price = 'aaaa'
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price is invalid')
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
       it 'priceが299以下では保存できない' do
         @item.price = 299
@@ -102,6 +102,11 @@ RSpec.describe Item, type: :model do
         @item.price = 10_000_000
         @item.valid?
         expect(@item.errors.full_messages).to include('Price must be in 300..9999999')
+      end
+      it 'priceに小数が含まれると保存できない' do
+        @item.price = 500.5
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price must be an integer')
       end
     end
   end
