@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :redirect_to_sign_in, except: [:index]
+  before_action :redirect_to_sign_in, except: [:index, :show]
 
   def index
     @items = Item.order("created_at DESC")
