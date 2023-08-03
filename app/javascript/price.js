@@ -7,7 +7,7 @@ function pricePreview() {
   price.addEventListener('input', () => {
     const priceValue = price.value;
     const commissionValue = Math.floor(priceValue * commissionRate);
-    const profitValue = priceValue - commissionValue;
+    const profitValue = Math.floor(priceValue - commissionValue);
 
     commission.innerHTML = commissionValue.toLocaleString();
     profit.innerHTML = profitValue.toLocaleString();
