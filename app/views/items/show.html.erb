@@ -25,7 +25,7 @@
 
     <%# ログインユーザーが出品者本人の場合に編集・削除ボタンを表示 %> 
     <% if user_signed_in? && current_user.id == @item.user.id %>
-      <%= link_to "商品の編集", "#", method: :get, class: "item-red-btn" %>
+      <%= link_to "商品の編集", edit_item_path(@item), data: {method: :get, turbo: false}, class: "item-red-btn" %>
       <p class="or-text">or</p>
       <%= link_to "削除", "#", method: :delete, class:"item-destroy" %>
     <%# ログインユーザーが出品者本人ではない場合に購入ボタンを表示 %>
