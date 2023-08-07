@@ -31,7 +31,7 @@
     <%# ログインユーザーが出品者本人ではない場合に購入ボタンを表示 %>
     <% elsif user_signed_in? %>
       <%# 商品が売れていない場合はこちらを表示しましょう %>
-      <%= link_to "購入画面に進む", item_orders_path(@item) ,class:"item-red-btn"%>
+      <%= link_to "購入画面に進む", item_orders_path(@item), data: {turbo: false}, class:"item-red-btn"%>
       <%# //商品が売れていない場合はこちらを表示しましょう %>    
     <%# 非ログイン時には何も表示しない %>
     <% end %>

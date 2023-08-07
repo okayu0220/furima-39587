@@ -3,6 +3,7 @@ class OrdersController < ApplicationController
   before_action :item_set
 
   def index
+    gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     @order_delivery = OrderDelivery.new
     redirect_seller_user
   end
