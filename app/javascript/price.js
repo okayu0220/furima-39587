@@ -14,4 +14,4 @@ function pricePreview() {
   });
 };
 
-window.addEventListener('turbo:load', pricePreview());
+window.addEventListener('turbo:load', pricePreview);
