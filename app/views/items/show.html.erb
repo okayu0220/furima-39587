@@ -24,17 +24,17 @@
       </span>
     </div>
 
-    <% if @item.order == nil %>
+    <% if @item.order == nil && user_signed_in? %>
       <%# ログインユーザーが出品者本人の場合に編集・削除ボタンを表示 %> 
-      <% if user_signed_in? && current_user.id == @item.user.id %>
+      <% if current_user.id == @item.user.id %>
         <%= link_to "商品の編集", edit_item_path(@item), data: {method: :get, turbo: false}, class: "item-red-btn" %>
         <p class="or-text">or</p>
         <%= link_to "削除", item_path(@item), data: {turbo_method: :delete}, class:"item-destroy" %>
       <%# ログインユーザーが出品者本人ではない場合に購入ボタンを表示 %>
-      <% elsif user_signed_in? %>
+      <% else %>
         <%= link_to "購入画面に進む", item_orders_path(@item), data: {turbo: false}, class:"item-red-btn"%>
-      <%# 非ログイン時には何も表示しない %>
       <% end %>
+      <%# 非ログイン時には何も表示しない %>
     <% end %>
 
     <div class="item-explain-box">
