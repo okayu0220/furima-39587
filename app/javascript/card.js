@@ -6,13 +6,27 @@ function cardPayment() {
   const expiryElement = elements.create('cardExpiry');
   const cvcElement = elements.create('cardCvc');
 
+  // カード情報入力フォーム作成
   numberElement.mount('#number-form');
   expiryElement.mount('#expiry-form');
   cvcElement.mount('#cvc-form');
 
   const form = document.getElementById('charge-form');
   form.addEventListener("submit", (e) => {
+    payjp.createToken(numberElement).then(function(response) {
+      if (response.error) {
+        ;
+      } else {
+        const token = response.id; // トークン取得
+        const tokenObj = `<input value=${token} name="token" type="hidden">`;
+        form.insertAdjacentHTML("beforeend", tokenObj); // トークン情報を持ったオブジェクトをフォームに追加
 
+      }
+      numberElement.clear();
+      expiryElement.clear();
+      cvcElement.clear();
+      form.submit();
+    });
     e.preventDefault();
   });
 };
