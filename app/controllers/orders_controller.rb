@@ -5,7 +5,7 @@ class OrdersController < ApplicationController
   def index
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     @order_delivery = OrderDelivery.new
-    redirect_seller_user
+    redirect_to_top_page
   end
   
   def create
@@ -28,8 +28,8 @@ class OrdersController < ApplicationController
     end
   end
 
-  def redirect_seller_user
-    if user_signed_in? && current_user.id == @item.user.id
+  def redirect_to_top_page
+    if @item.order != nil || (user_signed_in? && current_user.id == @item.user.id)
       redirect_to root_path
     end
   end
