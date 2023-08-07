@@ -20,7 +20,6 @@ function cardPayment() {
         const token = response.id; // トークン取得
         const tokenObj = `<input value=${token} name="token" type="hidden">`;
         form.insertAdjacentHTML("beforeend", tokenObj); // トークン情報を持ったオブジェクトをフォームに追加
-
       }
       numberElement.clear();
       expiryElement.clear();
